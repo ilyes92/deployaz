@@ -48,8 +48,17 @@ jobs:
           inlineScript: az group create --location WestEurope --name ${{env.RG_Name}}
       - uses: azure/arm-deploy@v1
         name: Deploy Storage account
-        id: deploy-say #To refer to this step later
+        id: deploy-sa #To refer to this step later
         with:
           deploymentName: ${{github.run_number}}
           resourceGroupName: ${{env.RG_Name}}
           template: ./storage.bicep
+      - uses: azure/arm-deploy@v1
+        name: Deploy Storage account container
+        id: deploy-sa-container #To refer to this step later
+        with:
+          deploymentName: ${{github.run_number}}
+          resourceGroupName: ${{env.RG_Name}}
+          template: ./blobcontainer.bicep
+          parameters: mysaname=${{steps.deploy-sa.outputs.mysaname}}
+      
