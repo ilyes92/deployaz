@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     env:
-     RG_Name: RG20-Dev
+     RG_Name: ${{env.RG_Name}}
     steps:
       - uses: actions/checkout@v3
       - uses: azure/login@v1
@@ -34,7 +34,7 @@ jobs:
     needs: [deploy-dev]
     environment: prd
     env:
-     RG_Name: RG20-Prd
+     RG_Name: ${{env.RG_Name}}
     steps:
       - uses: actions/checkout@v3
       - uses: azure/login@v1
