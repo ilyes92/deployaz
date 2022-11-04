@@ -27,4 +27,4 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run Linter on bicep
-        run: az bicep build --file .\storage.bicep
+        run: az bicep build --file storage.bicep
